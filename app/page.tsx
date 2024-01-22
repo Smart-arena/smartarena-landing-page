@@ -186,8 +186,7 @@ const Home = () => {
               data-aos-delay="300"
             >
               <h1 className="text-xl lg:font-semibold">
-                <Counter start={0} end={10} duration={7} />
-                k+
+                <Counter start={0} end={200} duration={7} />+
               </h1>
               <p className="text-white/65 lg:text-sm text-xs">
                 Serviced Properties
@@ -200,7 +199,8 @@ const Home = () => {
               data-aos-delay="500"
             >
               <h1 className="text-xl lg:font-semibold">
-                $<Counter start={0} end={160} duration={7} />k+
+                $<Counter start={0} end={160} duration={7} />
+                k+
               </h1>
               <p className="text-white/65 lg:text-sm text-xs">
                 In Sales Of Products
@@ -219,7 +219,7 @@ const Home = () => {
             priority
             width={600}
             alt="house-image"
-            className= "lg:mx-0 lg:rounded-none mx-auto rounded-3xl"
+            className="lg:mx-0 lg:rounded-none mx-auto rounded-3xl"
           />
         </div>
       </section>
@@ -1191,10 +1191,7 @@ const Home = () => {
       >
         <Footer />
       </footer>
-      <footer
-        id="contact"
-        className="bg-[#000B0E] text-white p-3 text-xs"
-      >
+      <footer id="contact" className="bg-[#000B0E] text-white p-3 text-xs">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row justify-between">
           <div className="lg:space-x-5 space-y-3 flex lg:flex-row flex-col pb-4 lg:pb-0 font-extralight h-auto items-center">
             <h1 className="lg:pt-[.8rem]">

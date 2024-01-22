@@ -61,33 +61,33 @@ const Footer = () => {
     },
   ];
 
-  const servicesLinks: FooterType = [
-    {
-      link: "#",
-      name: "Valuation Mastery",
-      key: 0,
-    },
-    {
-      link: "#",
-      name: "Strategic Marketing",
-      key: 1,
-    },
-    {
-      link: "#",
-      name: "Negotiation Wizardry",
-      key: 2,
-    },
-    {
-      link: "#",
-      name: "Closing Success",
-      key: 3,
-    },
-    {
-      link: "#",
-      name: "Property Management",
-      key: 3,
-    },
-  ];
+  // const servicesLinks: FooterType = [
+  //   {
+  //     link: "#",
+  //     name: "Valuation Mastery",
+  //     key: 0,
+  //   },
+  //   {
+  //     link: "#",
+  //     name: "Strategic Marketing",
+  //     key: 1,
+  //   },
+  //   {
+  //     link: "#",
+  //     name: "Negotiation Wizardry",
+  //     key: 2,
+  //   },
+  //   {
+  //     link: "#",
+  //     name: "Closing Success",
+  //     key: 3,
+  //   },
+  //   {
+  //     link: "#",
+  //     name: "Property Management",
+  //     key: 3,
+  //   },
+  // ];
 
   const contactLinks: FooterType = [
     {
@@ -121,7 +121,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="lg:col-span-5">
-          <div className="py-8 grid lg:grid-cols-4 grid-cols-2 gap-4">
+          <div className="py-8 grid lg:grid-cols-3 grid-cols-2 gap-4">
             <div className="space-y-4">
               <h1 className="text-white/50">Home</h1>
               <div className="space-y-3">
@@ -154,7 +154,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <h1 className="text-white/50">Services</h1>
               <div className="space-y-3">
                 {servicesLinks.map(({ name, link, key }) => (
@@ -168,7 +168,7 @@ const Footer = () => {
                   </>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className="space-y-4">
               <h1 className="text-white/50">Contact Us</h1>
