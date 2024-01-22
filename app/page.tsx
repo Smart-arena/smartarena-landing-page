@@ -681,7 +681,7 @@ const Home = () => {
             data-aos-delay="800"
           >
             <Link
-              href={"/"}
+              href={"https://shop.mysmartarena.com/allproducts"}
               className="bg-dark-blue text-white px-4 py-3 rounded-lg hover:scale-110 active:scale-100 duration-200 lg:hidden block "
             >
               View all Products
