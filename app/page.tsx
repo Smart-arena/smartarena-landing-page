@@ -186,11 +186,11 @@ const Home = () => {
               data-aos-delay="300"
             >
               <h1 className="text-xl lg:font-semibold">
-                <Counter start={0} end={10} duration={6} />
+                <Counter start={0} end={10} duration={7} />
                 k+
               </h1>
               <p className="text-white/65 lg:text-sm text-xs">
-                Properties For Clients
+                Serviced Properties
               </p>
             </div>
             <div
@@ -200,10 +200,10 @@ const Home = () => {
               data-aos-delay="500"
             >
               <h1 className="text-xl lg:font-semibold">
-                <Counter start={0} end={16} duration={7} />+
+                $<Counter start={0} end={160} duration={7} />k+
               </h1>
               <p className="text-white/65 lg:text-sm text-xs">
-                Years Of Experience
+                In Sales Of Products
               </p>
             </div>
           </div>
@@ -219,7 +219,7 @@ const Home = () => {
             priority
             width={600}
             alt="house-image"
-            className="lg:rounded-tl-[4rem] lg:mx-0 lg:rounded-none mx-auto rounded-3xl"
+            className= "lg:mx-0 lg:rounded-none mx-auto rounded-3xl"
           />
         </div>
       </section>
