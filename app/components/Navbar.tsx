@@ -66,12 +66,12 @@ const Navbar = () => {
         ))}
       </div>
 
-      <div className="text-white h-auto lg:flex items-center space-x-14 hidden">
+      {/* <div className="text-white h-auto lg:flex items-center space-x-14 hidden">
         <Alert className="scale-150 cursor-pointer" />
         <Search className="scale-125 cursor-pointer" />
         <Heart className="scale-75 cursor-pointer" />
         <CartIcon className="scale-125 cursor-pointer" />
-      </div>
+      </div> */}
 
       {/* Mobile Nav */}
       <div className="lg:hidden block">
