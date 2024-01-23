@@ -1,13 +1,20 @@
 import Logo from "@/public/Logo";
-import { CartIcon, Alert, Heart, Search, NavMenu, CloseIcon } from "@/public/Icons";
+import {
+  CartIcon,
+  Alert,
+  Heart,
+  Search,
+  NavMenu,
+  CloseIcon,
+} from "@/public/Icons";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Key, useState } from "react";
 
 const Navbar = () => {
   type linksProps = {
     href: string;
     link: string;
-    key: number;
+    key: Key | undefined | null;
   }[];
 
   const links: linksProps = [
@@ -17,7 +24,7 @@ const Navbar = () => {
       key: 1,
     },
     {
-      href: "#services",
+      href: "/services",
       link: "Services",
       key: 2,
     },
@@ -27,12 +34,12 @@ const Navbar = () => {
       key: 3,
     },
     {
-      href: "",
+      href: "/",
       link: "About Us",
       key: 4,
     },
     {
-      href: "#contact",
+      href: "/#contact",
       link: "Contact Us",
       key: 5,
     },
@@ -49,10 +56,11 @@ const Navbar = () => {
       <div className="text-white lg:flex justify-between items-center space-x-14 h-auto hidden">
         {links.map(({ href, link, key }) => (
           <>
-            <h1 className="cursor-pointer hover:scale-125 duration-200 active:scale-90">
-              <Link href={href} key={key}>
-                {link}
-              </Link>
+            <h1
+              className="cursor-pointer hover:scale-125 duration-200 active:scale-90"
+              key={key}
+            >
+              <Link href={href}>{link}</Link>
             </h1>
           </>
         ))}
@@ -77,23 +85,35 @@ const Navbar = () => {
 
       <nav
         className={`lg:hidden block ${
-          openNav ? `w-1/2 p-8 ` : `w-0 py-8`
+          openNav ? `w-full  py-4 px-6` : `w-0 py-4`
         } bg-dark-blue/100 fixed top-0 bottom-0 right-0 duration-500 `}
       >
+        <div className="flex justify-between">
+          <Link href={"/"}>
+            <Logo className="relative bottom-2 cursor-pointer" />
+          </Link>
 
-        <CloseIcon className="active:scale-90 duration-300 w-8"
-            onClick={() => setOpenNav(!openNav)} />
+          <CloseIcon
+            className="active:scale-90 duration-300 w-8 cursor-pointer"
+            onClick={() => setOpenNav(!openNav)}
+          />
+        </div>
 
-        <nav className="pt-20 space-y-10">
-        {links.map(({ href, link, key }) => (
-          <>
-            <h1 className={`cursor-pointer hover:scale-125 duration-200 ${openNav ? `` : `duration-700`}`} >
-              <Link href={href} key={key} onClick={() => setOpenNav(!openNav)}>
-                {link}
-              </Link>
-            </h1>
-          </>
-        ))}
+        <nav className="pt-20 space-y-10 p-8">
+          {links.map(({ href, link, key }) => (
+            <>
+              <h1
+                key={key}
+                className={`cursor-pointer duration-200 ${
+                  openNav ? `` : `duration-700`
+                }`}
+              >
+                <Link href={href} onClick={() => setOpenNav(!openNav)}>
+                  {link}
+                </Link>
+              </h1>
+            </>
+          ))}
         </nav>
       </nav>
     </nav>

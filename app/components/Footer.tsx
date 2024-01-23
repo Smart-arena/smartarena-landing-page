@@ -2,12 +2,13 @@ import { Mail, Send } from "@/public/Icons";
 import SmartArena from "@/public/Smart Arena overall.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { Key } from "react";
 
 const Footer = () => {
   type FooterType = {
     link: string;
     name: string;
-    key: number;
+    key: Key | null | undefined;
   }[];
 
   const homeLinks: FooterType = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Image from "next/image";
 import HouseImg from "@/public/smart-arena-home.png";
@@ -62,7 +62,7 @@ const Home = () => {
   type ProductTypeTypes = {
     name: string;
     value: string;
-    key: number;
+    key: Key | null | undefined;
   }[];
 
   const productType: ProductTypeTypes = [
@@ -225,43 +225,51 @@ const Home = () => {
       </section>
       {/* Home page */}
       <section className="grid lg:grid-cols-4 grid-cols-2 gap-5 p-2 bg-[#373737]">
-        <div
-          className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-3"
-          data-aos="zoom-in"
-          data-aos-duration="500"
-        >
-          <ProductStore />
-          <h1 className="text-white lg:text-sm text-xs">Product Store</h1>
-        </div>
-        <div
-          className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-3"
-          data-aos="zoom-in"
-          data-aos-duration="500"
-          data-aos-delay="200"
-        >
-          <Services />
-          <h1 className="text-white lg:text-sm text-xs">Services</h1>
-        </div>
-        <div
-          className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-33"
-          data-aos="zoom-in"
-          data-aos-duration="500"
-          data-aos-delay="400"
-        >
-          <Portfolio />
-          <h1 className="text-white lg:text-sm text-xs">Project Portfolio</h1>
-        </div>
-        <div
-          className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-3"
-          data-aos="zoom-in"
-          data-aos-duration="500"
-          data-aos-delay="600"
-        >
-          <SmartChoice />
-          <h1 className="text-white lg:text-sm text-xs text-center">
-            Smart Investments. Informed Decisions
-          </h1>
-        </div>
+        <Link href={"https://shop.mysmartarena.com"}>
+          <div
+            className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-3"
+            data-aos="zoom-in"
+            data-aos-duration="500"
+          >
+            <ProductStore />
+            <h1 className="text-white lg:text-sm text-xs">Product Store</h1>
+          </div>
+        </Link>
+        <Link href={"/services"}>
+          <div
+            className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-3"
+            data-aos="zoom-in"
+            data-aos-duration="500"
+            data-aos-delay="200"
+          >
+            <Services />
+            <h1 className="text-white lg:text-sm text-xs">Services</h1>
+          </div>
+        </Link>
+        <Link href={"/"}>
+          <div
+            className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-33"
+            data-aos="zoom-in"
+            data-aos-duration="500"
+            data-aos-delay="400"
+          >
+            <Portfolio />
+            <h1 className="text-white lg:text-sm text-xs">Project Portfolio</h1>
+          </div>
+        </Link>
+        <Link href={"/"}>
+          <div
+            className="bg-dark-blue flex flex-col h-auto py-4 items-center justify-center rounded-lg lg:space-y-3 space-y-4 px-3"
+            data-aos="zoom-in"
+            data-aos-duration="500"
+            data-aos-delay="600"
+          >
+            <SmartChoice />
+            <h1 className="text-white lg:text-sm text-xs text-center">
+              Smart Investments. Informed Decisions
+            </h1>
+          </div>
+        </Link>
       </section>
 
       {/* Icons */}
@@ -368,9 +376,11 @@ const Home = () => {
           >
             <div className="space-y-2 col-span-3 md:col-span-2 ">
               <Sprinkles />
-              <h1 className="text-xl md:text-3xl font-semibold">
-                Featured Services
-              </h1>
+              <Link href={"services"}>
+                <h1 className="text-xl md:text-3xl inline-block font-semibold">
+                  Featured Services
+                </h1>
+              </Link>
             </div>
           </div>
 
