@@ -46,7 +46,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { fetchProducts } from "./utils/utils";
+import { fetchProducts, randomProducts } from "./utils/utils";
 import productImg1 from "@/public/EchoShow1edit.jpg";
 import productImg2 from "@/public/hikjong.png";
 import productImg3 from "@/public/security-cam.png";
@@ -57,8 +57,11 @@ import BestMaterials from "@/public/Best-materials.svg";
 import CommaSvg from "@/public/CommaSvg.svg";
 import Ratings from "@/public/Ratings.svg";
 import Footer from "./components/Footer";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
+  const router = useRouter();
+
   type ProductTypeTypes = {
     name: string;
     value: string;
@@ -118,17 +121,18 @@ const Home = () => {
     },
   ];
 
-  // const [products, setProduct] = useState<any>([]);
+  const [products, setProduct] = useState<any>([]);
 
   useEffect(() => {
     AOS.init();
 
-    // const fetchProduct = async () => {
-    //   const product = await fetchProducts();
-    //   setProduct(product?.data);
-    // };
+    const fetchProduct = async () => {
+      const { randomProducts: data } = await randomProducts();
+      setProduct(data);
+      // console.log(data);
+    };
 
-    // fetchProduct();
+    fetchProduct();
   }, []);
 
   // console.log(products);
@@ -585,7 +589,7 @@ const Home = () => {
         </main> */}
 
         <Carousel className="w-full">
-          <CarouselContent>
+          {/* <CarouselContent>
             <CarouselItem
               className="lg:basis-1/3 md:basis-1/2 basis-1/1 mx-3 md:mx-auto"
               data-aos="zoom-in"
@@ -682,6 +686,60 @@ const Home = () => {
                 </div>
               </main>
             </CarouselItem>
+          </CarouselContent> */}
+
+          <CarouselContent>
+            {products.map((product: any) => (
+              <>
+                <CarouselItem
+                  className="lg:basis-1/3 md:basis-1/2 basis-1/1 mx-3 md:mx-auto"
+                  data-aos="zoom-in"
+                  data-aos-duration="500"
+                  data-aos-delay="500"
+                >
+                  <main className=" bg-dark-blue text-white rounded-lg w-[368px] p-8 my-8 md:m-8">
+                    <div>
+                      <Image
+                        src={`https://res.cloudinary.com/deipg69lh/image/upload/${product.images[0]}`}
+                        alt={"Product image 1"}
+                        className="w-[350px] h-[300px] object-cover rounded-lg"
+                        priority
+                        width={308}
+                        height={222}
+                      />
+                    </div>
+                    <div className="space-y-4">
+                      <h1 className="font-semibold pt-4 h-[4rem]">
+                        {product.name}
+                      </h1>
+                      <p className="text-white/70 text-sm h-[7rem]">
+                        {product.description}
+                        <span className="text-white hover:cursor-pointer">
+                          <Link
+                            target="_blank"
+                            href={`https://shop.mysmartarena.com/product/${product._id}`}
+                          >
+                            ... Read More
+                          </Link>
+                        </span>
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() =>
+                          router.push(
+                            `https://shop.mysmartarena.com/product/${product._id}`
+                          )
+                        }
+                        className="bg-light-blue mt-4 w-full py-3 rounded-lg font-light"
+                      >
+                        View Product Details
+                      </button>
+                    </div>
+                  </main>
+                </CarouselItem>
+              </>
+            ))}
           </CarouselContent>
 
           <div

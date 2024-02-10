@@ -19,3 +19,12 @@ export const fetchServices = async () => {
     console.log("Error occured while trying to fetch", err);
   }
 };
+
+export const randomProducts = async () => {
+  try {
+    const {data : randomProductData} = await axios.get(`${endpoint}product/random`);
+    return randomProductData;
+  } catch (err) {
+    console.log("Error occured while trying to fetch", err);
+  }
+};
