@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const endpoint = "https://smart-arena.cyclic.ap/";
+const endpoint = "https://smart-arena.cyclic.app/";
 
 export const fetchProducts = async () => {
   try {
