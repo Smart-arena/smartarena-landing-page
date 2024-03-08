@@ -46,10 +46,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { fetchProducts, randomProducts } from "./utils/utils";
-import productImg1 from "@/public/EchoShow1edit.jpg";
-import productImg2 from "@/public/hikjong.png";
-import productImg3 from "@/public/security-cam.png";
+import { fetchProducts, fetchServices, randomProducts } from "./utils/utils";
+// import productImg1 from "@/public/EchoShow1edit.jpg";
+// import productImg2 from "@/public/hikjong.png";
+// import productImg3 from "@/public/security-cam.png";
 import Experienced from "@/public/Experienced.svg";
 import CompetitivePrice from "@/public/Competitive-price.svg";
 import OnTime from "@/public/On-time.svg";
@@ -122,17 +122,20 @@ const Home = () => {
   ];
 
   const [products, setProduct] = useState<any>([]);
+  const [services, setServices] = useState<any>([]);
 
   useEffect(() => {
     AOS.init();
 
-    const fetchProduct = async () => {
-      const { randomProducts: data } = await randomProducts();
-      setProduct(data);
-      // console.log(data);
+    const fetchProductServices = async () => {
+      const { randomProducts: dataproducts } = await randomProducts();
+      const services = await fetchServices();
+      console.log(services?.data);
+      setServices(services?.data);
+      setProduct(dataproducts);
     };
 
-    fetchProduct();
+    fetchProductServices();
   }, []);
 
   // console.log(products);
@@ -371,14 +374,14 @@ const Home = () => {
 
       {/* Featured Services */}
       <section className="bg-light-ash" id="services">
-        <section className="p-8 grid grid-cols-2 max-w-7xl mx-auto">
+        <section className="p-8 flex max-w-7xl mx-auto">
           <div
-            className="col-span-2 md:col-span-1"
+            className=""
             data-aos="zoom-in"
             data-aos-duration="500"
             data-aos-delay="300"
           >
-            <div className="space-y-2 col-span-3 md:col-span-2 ">
+            <div className="space-y-2">
               <Sprinkles />
               <Link href={"services"}>
                 <h1 className="text-xl md:text-3xl inline-block font-semibold">
@@ -388,61 +391,95 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="col-span-1">
-            <div className="grid grid-cols-5 gap-5">
-              <div
-                className="lg:block hidden col-span-2 border-2 border-dark-blue p-8 rounded-3xl"
-                data-aos="zoom-in"
-                data-aos-duration="500"
-                data-aos-delay="300"
-              >
-                <div className="flex h-auto items-center mb-5 w-full">
-                  <Phone />
-                  <h1>
-                    Call <br />
-                    (+234) 9092622716
-                  </h1>
-                </div>
-                <Link
-                  href="tel:+2349092622716"
-                  className="w-3/4 bg-light-blue rounded-xl text-white px-10 py-3"
-                >
-                  Call Now
-                </Link>
+          <div className="flex ml-auto space-x-9">
+            <div
+              className="lg:block hidden border-2 border-dark-blue p-8 rounded-3xl"
+              data-aos="zoom-in"
+              data-aos-duration="500"
+              data-aos-delay="300"
+            >
+              <div className="flex h-auto items-center mb-5 w-full">
+                <Phone />
+                <h1>
+                  Call <br />
+                  (+234) 9092622716
+                </h1>
               </div>
-              <div
-                className="col-span-3 lg:block hidden border-2 border-dark-blue p-8 rounded-3xl justify-self-end "
-                data-aos="zoom-in"
-                data-aos-duration="500"
-                data-aos-delay="500"
+              <Link
+                href="tel:+2349092622716"
+                className="w-3/4 bg-light-blue rounded-xl text-white px-10 py-3"
               >
-                <div className="flex h-auto items-center mb-5 w-full space-x-3 space-y-3">
-                  <Gmail className="scale-150" />
-                  <h1>
-                    Email <br />
-                    contact@mysmartarena.com
-                  </h1>
-                </div>
-                <Link
-                  href="mailto:contact@mysmartarena.com"
-                  className="w-3/4 bg-light-blue rounded-xl text-white px-10 py-3"
-                >
-                  Email Now
-                </Link>
+                Call Now
+              </Link>
+            </div>
+            <div
+              className=" lg:block hidden border-2 border-dark-blue p-8 rounded-3xl"
+              data-aos="zoom-in"
+              data-aos-duration="500"
+              data-aos-delay="500"
+            >
+              <div className="flex h-auto items-center mb-5 w-full space-x-3 space-y-3">
+                <Gmail className="scale-150" />
+                <h1>
+                  Email <br />
+                  contact@mysmartarena.com
+                </h1>
               </div>
+              <Link
+                href="mailto:contact@mysmartarena.com"
+                className="w-3/4 bg-light-blue rounded-xl text-white px-10 py-3"
+              >
+                Email Now
+              </Link>
             </div>
           </div>
         </section>
         <Carousel
           className="w-full bg-light-ash pb-4 max-w-7xl mx-auto"
-          // plugins={[
-          //   Autoplay({
-          //     delay: 3000,
-          //   }),
-          // ]}
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
         >
           <CarouselContent>
-            <CarouselItem
+            {services.map((service: any) => (
+              <>
+                <CarouselItem
+                  className="lg:basis-1/3 md:basis-1/2 basis-1/1 mx-auto"
+                  data-aos="zoom-in"
+                  data-aos-duration="500"
+                  data-aos-delay="300"
+                >
+                  <section className="bg-light-ash">
+                    {/* */}
+                    <div className="p-4">
+                      <Link href={service.videoLink}>
+                        <Image
+                          src={`https://res.cloudinary.com/deipg69lh/image/upload/${service.images[0]}`}
+                          alt={"Service image 1"}
+                          className="w-[350px] h-[300px] object-cover duration-200 hover:scale-105"
+                          priority
+                          width={308}
+                          height={222}
+                        />
+                      </Link>
+                      <div className="p-4">
+                        <h1 className="pb-3 text-xl font-semibold">
+                          {service.name}
+                        </h1>
+                        <p className="text-black/50 leading-7 w-[340px]">
+                          Industrial development is our main <br />
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </section>
+                </CarouselItem>
+              </>
+            ))}
+
+            {/* <CarouselItem
               className="lg:basis-1/3 md:basis-1/2 basis-1/1 lg:pl-14 mx-auto"
               data-aos="zoom-in"
               data-aos-duration="500"
@@ -510,7 +547,7 @@ const Home = () => {
                   </div>
                 </div>
               </section>
-            </CarouselItem>
+            </CarouselItem> */}
           </CarouselContent>
           <CarouselPrevious
             className="absolute left-7"
@@ -559,36 +596,14 @@ const Home = () => {
           </Link>
         </div>
 
-        {/* <main>
-          <Carousel className="w-full">
-            <CarouselContent>
-              {products &&
-                products?.slice(3, 8)?.map((product: any) => {
-                  return (
-                    <>
-                      <CarouselItem className=" lg:basis-1/3 md:basis-1/2 basis-1/1">
-                        <Product product={product} />
-                      </CarouselItem>
-                    </>
-                  );
-                })}
-            </CarouselContent>
-            <CarouselPrevious
-              className="absolute -left-7"
-              // data-aos="zoom-in"
-              // data-aos-duration="500"
-              // data-aos-delay="500"
-            />
-            <CarouselNext
-              className="absolute -right-7"
-              // data-aos="zoom-in"
-              // data-aos-duration="500"
-              // data-aos-delay="500"
-            />
-          </Carousel>
-        </main> */}
-
-        <Carousel className="w-full">
+        <Carousel
+          className="w-full"
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+        >
           {/* <CarouselContent>
             <CarouselItem
               className="lg:basis-1/3 md:basis-1/2 basis-1/1 mx-3 md:mx-auto"
@@ -693,6 +708,7 @@ const Home = () => {
               <>
                 <CarouselItem
                   className="lg:basis-1/3 md:basis-1/2 basis-1/1 mx-3 md:mx-auto"
+                  key={product._id}
                   data-aos="zoom-in"
                   data-aos-duration="500"
                   data-aos-delay="500"
