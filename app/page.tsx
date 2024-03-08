@@ -130,7 +130,7 @@ const Home = () => {
     const fetchProductServices = async () => {
       const { randomProducts: dataproducts } = await randomProducts();
       const services = await fetchServices();
-      console.log(services?.data);
+      // console.log(services?.data);
       setServices(services?.data);
       setProduct(dataproducts);
     };
