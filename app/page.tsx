@@ -465,7 +465,7 @@ const Home = () => {
                         />
                       </Link>
                       <div className="p-4">
-                        <h1 className="pb-3 text-xl font-semibold">
+                        <h1 className="pb-3 text-xl font-semibold w-[340px]">
                           {service.name}
                         </h1>
                         <p className="text-black/50 leading-7 w-[340px]">
