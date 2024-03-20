@@ -1285,13 +1285,13 @@ const Home = () => {
           </div>
 
           <div className="flex space-x-5 mx-auto lg:mx-0 p-4 lg:p-0 ">
-            <Link href={"/"}>
+            <Link href={"https://www.facebook.com/smartarenang"}>
               <FacebookLogo className="w-6 hover:scale-110 duration-200" />
             </Link>
-            <Link href={"/"}>
+            <Link target="_blank" href={"https://twitter.com/smartarena_ng"}>
               <TwitterLogo className="w-6 hover:scale-110 duration-200" />
             </Link>
-            <Link href={"/"}>
+            <Link target="_blank" href={"https://www.instagram.com/smart_arena.ng/"}>
               <InstagramLogo className="w-6 hover:scale-110 duration-200" />
             </Link>
             <Link href={"/"}>
